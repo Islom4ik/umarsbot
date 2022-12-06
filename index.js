@@ -7,12 +7,20 @@ const getscene = new Scenes.BaseScene("getscene");
 
 
 getscene.enter(async ctx => {
-    await ctx.reply('Скиньте url фотки:')
+    try {
+        await ctx.reply('Скиньте url фотки:')   
+    } catch (e) {
+        console.error(e);
+    }
 })
 
 getscene.on("text", async ctx => {
-    await ctx.replyWithPhoto({url: ctx.message.text})
-    await ctx.scene.leave('getscene')
+    try {
+        await ctx.replyWithPhoto({url: ctx.message.text})
+        await ctx.scene.leave('getscene')  
+    } catch (e) {
+        console.error(e);
+    }
 })
 
 
